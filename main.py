@@ -54,6 +54,7 @@ def main():
                 btns.remove(rnd)
                 worker.set_button_1(rnd)
             worker.confirm()
+    print(4234234242)
 
 
 class Driver:
@@ -76,8 +77,8 @@ class Driver:
         chrome_options.add_argument("--disable-extensions")
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--no-sandbox")  # linux only
-        #chrome_options.add_argument("--headless=new")  # for Chrome >= 109
-        self.__driver = webdriver.Chrome(service=service, options=chrome_options)
+        chrome_options.add_argument("--headless=new")
+        self.__driver = webdriver.Firefox(service=service, options=chrome_options)
 
     def start(self):
         self.__driver.get(args.get_config()['url'])
@@ -94,11 +95,11 @@ class Driver:
         return output
 
     def set_button_1(self, text):
-        time.sleep(0.5)
+        time.sleep(1)
         self.__driver.find_element(By.XPATH, f"//div[contains(text(), '{text}')]").click()
 
     def confirm(self):
-        time.sleep(0.5)
+        time.sleep(1)
         self.__driver.find_element(By.XPATH, f"//span[contains(text(), 'Далее')]").click()
         time.sleep(1)
 
